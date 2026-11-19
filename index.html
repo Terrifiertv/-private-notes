@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#09090b">
+  <meta name="description" content="A private, offline notes app.">
+  <title>Private Notes</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="style.css">
+  <link rel="apple-touch-icon" href="icon.svg">
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <div class="brand"><span class="brand-icon">✦</span><div><h1>Private Notes</h1><p>Your notes, just yours.</p></div></div>
+      <button id="lockBtn" class="icon-btn hidden" aria-label="Lock app" title="Lock">⌑</button>
+    </header>
+
+    <section id="authView" class="auth-card">
+      <div class="lock-mark">🔒</div>
+      <h2 id="authTitle">Welcome back</h2>
+      <p id="authDescription">Enter your password to unlock your private notes.</p>
+      <form id="authForm">
+        <label for="password">Password</label>
+        <input id="password" type="password" autocomplete="current-password" minlength="8" required placeholder="At least 8 characters">
+        <p id="authError" class="error" role="alert"></p>
+        <button id="authSubmit" class="primary" type="submit">Unlock notes</button>
+      </form>
+      <p class="hint" id="authHint">Your notes are encrypted on this device.</p>
+    </section>
+
+    <section id="notesView" class="hidden">
+      <div class="welcome-row"><div><h2>Your notes</h2><p id="noteCount">0 notes</p></div><button id="newNoteBtn" class="primary compact">＋ New note</button></div>
+      <div id="emptyState" class="empty"><div>🗒️</div><h3>No notes yet</h3><p>Tap “New note” to write your first private note.</p></div>
+      <div id="notesList" class="notes-list"></div>
+      <div class="footer-note">🔐 Encrypted on this device · Works offline</div>
+    </section>
+
+    <section id="editorView" class="editor hidden">
+      <div class="editor-actions"><button id="backBtn" class="text-btn">← Back</button><button id="deleteBtn" class="danger-btn">Delete</button></div>
+      <label for="noteTitle">Title</label>
+      <input id="noteTitle" maxlength="100" placeholder="Untitled note">
+      <label for="noteBody">Your note</label>
+      <textarea id="noteBody" placeholder="Start writing..." rows="12"></textarea>
+      <button id="saveBtn" class="primary">Save note</button>
+      <p id="saveStatus" class="hint" aria-live="polite"></p>
+    </section>
+
+    <div id="toast" class="toast" role="status"></div>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
